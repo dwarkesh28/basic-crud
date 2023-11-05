@@ -16,8 +16,9 @@ func PostsCreate(c *gin.Context) {
 	}
 	c.Bind(&body)
 
+
 	//  Create a post
-	post := models.PostData{Title: body.Title, Body: body.Body}
+	post := models.PostData{Title: body.Title, Body: body.Body }
 	result := initializers.DB.Create(&post)
 
 	if result.Error != nil {
@@ -36,7 +37,7 @@ func PostsCreate(c *gin.Context) {
 func PostsIndex(c *gin.Context) {
 	// Get the posts
 	var posts []models.PostData
-	var final []*dto.GetData
+	var final []*dto.GetPostData
 
 	// initializers.DB.Select("title", "body", "created_at").Find(&posts)
 	initializers.DB.Find(&posts)
